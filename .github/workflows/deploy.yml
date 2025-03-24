@@ -1,0 +1,25 @@
+name: Deploy Backend to EC2
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy with CodeDeploy
+        uses: webfactory/create-aws-codedeploy-deployment@v1
+        with:
+          application-name: backend-app
+          deployment-group: backend-deploy-group
+          deployment-config-name: CodeDeployDefault.AllAtOnce
+          region: ap-northeast-2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
