@@ -12,14 +12,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy with CodeDeploy
-        uses: webfactory/create-aws-codedeploy-deployment@v0.6.0
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          application-name: backend-app
-          deployment-group: backend-deploy-group
-          deployment-config-name: CodeDeployDefault.AllAtOnce
-          region: ap-northeast-2
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Deploy using AWS CLI
+        run: |
+          aws deploy create-deployment \
+            --application-name backend-app \
+            --deployment-group-name backend-deploy-group \
+            --deployment-config-name CodeDeployDefault.AllAtOnce \
+            --github-location repository=${{ github.repository }},commitId=${{ github.sha }} \
+            --region ap-northeast-2
 
