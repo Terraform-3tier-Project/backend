@@ -4,5 +4,11 @@
 curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
 sudo yum install -y nodejs
 
-# 그 외 의존성 설치
+# 💡 npm 캐시 초기화
+npm cache clean --force
+
+# 앱 디렉토리로 이동
+cd /home/ec2-user/backend
+
+# 패키지 설치
 npm install
