@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Deploy with CodeDeploy
-        uses: webfactory/create-aws-codedeploy-deployment@v1
+        uses: webfactory/create-aws-codedeploy-deployment@v0.6.0
         with:
           application-name: backend-app
           deployment-group: backend-deploy-group
