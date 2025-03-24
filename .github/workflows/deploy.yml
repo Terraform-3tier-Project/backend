@@ -10,7 +10,7 @@ jobs:
 
     env:
       AWS_REGION: ap-northeast-2
-      S3_BUCKET: codedeploy-app-bucket
+      S3_BUCKET: codedeploy-app-bucket-5634sang
       S3_KEY_PREFIX: backend
 
     steps:
