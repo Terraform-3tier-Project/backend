@@ -26,7 +26,7 @@ jobs:
 
       - name: Zip backend source code
         run: |
-          zip -r backend.zip backend/ -x "*.git*"
+          zip -r backend.zip . -x "*.git*" -x "backend.zip"
 
       - name: Upload to S3
         run: |
