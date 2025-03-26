@@ -1,3 +1,5 @@
 #!/bin/bash
 cd /home/ec2-user/backend
-nohup npm start > backend.log 2>&1 &
+
+nohup node app.js > backend.log 2>&1 &
+
